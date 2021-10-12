@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main()
+{
+    int stud[4][3],marks[4][3];
+    int i,j;
+    for (i=0;i<3;i++)
+    {
+        for(j=0;j<2;j++)
+        {
+            printf("enter rollno and marks:");
+            scanf("%d %d",&stud[i][j],&marks[i][j]);
+        
+        }
+    }
+    for (i=0;i<3;i++)
+    {
+        for(j=0;j<2;j++)
+        {
+            printf("%d %d",stud[i][j],marks[i][j]);
+        
+        
+        }
+    }
+    return 0;
+}
+//getting error
