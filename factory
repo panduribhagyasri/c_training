@@ -1,0 +1,40 @@
+#include <stdio.h>
+int fact(int n);
+int solve(int n,int x);
+int main()
+{
+    int n,x;
+    printf("Enter n value:");
+    scanf("%d",&n);
+    printf("Enter x value:");
+    scanf("%d",&x);
+    fact(n);
+    solve(n,x);
+    printf("%d",fact(n)*solve(n,x));
+    return 0;
+}
+int fact(int n)
+    {
+        if(n<=1)
+        {
+            return 1;
+        }
+        if(n==2)
+        {
+            return 2;
+        }
+        return n*fact(n-1);
+    }
+    
+int solve(int n,int x)
+{
+    if(x<=2)
+    {
+        return 0;
+    }
+    if(x==2)
+    {
+        return ((x-2)*(x-1))/2;
+    }
+    return solve(n,x-1)+solve(n-1,x-2);
+}
