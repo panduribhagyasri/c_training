@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,k,i,s,j;
+	scanf("%d",&a);
+	while(a--)
+	{
+		scanf("%d %d",&b,&c);
+		int arr[b];
+		for(i=0;i<b;i++)
+		{
+			scanf("%d",&arr[i]);
+
+		}
+		for(i=1;i<=c;i++)
+		{
+			scanf("%d %d",&d,&k);
+			s=0;
+			for(j=d;j<=k;j++)
+			{
+				s=s+arr[j];
+			}
+			printf("%d\n",s);
+		}
+	}
+}
