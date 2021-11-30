@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    int n;
+    scanf("%d",&n);
+    long long num,result=1;
+    long numberofzeroes=0;
+    while(n--)
+    {
+        scanf("%lld",&num);
+        while(num%10==0)
+        {
+            numberofzeroes++;
+            num=num/10;
+        }
+        result *= num;
+        
+    }
+    printf("%lld",result);
+    for (int i=1;i<=numberofzeroes;i++)
+    {
+        printf("0");
+            
+    }
+    return 0;
+}
