@@ -43,11 +43,16 @@ void add1(void)
     printf("sum from I:%d",x+y);
     
 }
+
 void add2(int x,int y)
 {
-    printf()
+    printf("sum from II:%d\n",x+y);
 }
 int add3(void)
+{
+    
+}
+int(int x,int y)
 {
     
 }
