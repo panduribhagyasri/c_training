@@ -12,7 +12,7 @@ void swap(int x,int y)//formal parameters//duplicate
 int main()
 {
     int x,y;//actual parameters//original data
-    scanf("%d %d",&x &y);
+    scanf("%d %d",&x,&y);
     printf("before passing values to swap method=> x:%d,y:%d\n",x,y);
     swap(x,y);
     printf("after passing values to swap method=> x:%d,y:%d\n",x,y);
