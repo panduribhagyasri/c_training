@@ -1,0 +1,17 @@
+#include<stdlib.h>
+
+struct distance
+{
+    int km;
+    int mt;
+};
+
+int main()
+{
+    struct distance d[3] = {{89, 900}, {95, 850}, {78, 650}};
+    
+    for(int i=0;i<3;i++)
+        printf("Distance in Miles: %d Km and %d Mtr => %.2f Miles\n",d[i].km,d[i].mt,(float)(d[i].km*1000+d[i].mt)/1600);
+    
+    return 0;
+}
