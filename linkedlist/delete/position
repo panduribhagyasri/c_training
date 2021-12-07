@@ -9,5 +9,6 @@ struct node* deleteAtposition(struct node *head,int position )
     ptr->next = temp->next;//ptr->next->next;
     temp->next=NULL;
     free(temp);
+    return head;
     
 }
