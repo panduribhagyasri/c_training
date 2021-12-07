@@ -1,0 +1,15 @@
+struct node* deleteAtBeginning(struct node *head)
+{
+    return(head == NULL || head ->next==NULL)?NULL : head->next;
+}
+
+int main() {
+    for (int i=1;i<=5;i++)
+        head = insertAtBeginning(head,rand()%100);
+    for (int i=1;i<=5;i++)
+        head = insertAtEnding(head,rand()%10);
+    head = insertAtposition(head,48,3);
+    head=deleteAtPosition(head);
+
+    return 0;
+}
