@@ -1,1 +1,8 @@
-
+void displayRec(struct node *head)
+{
+    if(head != NULL)
+    {
+        printf(" %d",head-> data);
+        displayRec(head->next);
+    }
+}
