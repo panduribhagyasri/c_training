@@ -1,3 +1,5 @@
+
+//best example for head recursively
 void displayRec(struct node *head)
 {
     if(head != NULL)
