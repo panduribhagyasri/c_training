@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <stdlib.h>
+#pragma pack(1)
+struct node
+{
+    int data;
+    struct node *next;
+
+}*head= NULL;
+struct node* insertAtBeginning(struct node *head, int newValue )
+{
+    struct node *newnode =(struct node*)malloc(sizeof(struct node));
+    newNode->data = newVAlue;
+    newNode->next = head;
+   
+    return newnode;
+}
+struct node* insertAtEnding(struct node *head, int newValue )
+{
+    struct node *newnode =(struct node*)malloc(sizeof(struct node));
+    newNode->data = newVAlue;
+    newNode->next = NULL;
+    if (head == NULL)
+        return newnode;//head = newNode;
+    else
+    {
+        struct node *ptr=head;
+        while(ptr-> next != NULL)
+            ptr=ptr->next;
+        ptr-> next = newNode;
+    }
+    return head;
+        
+}
+struct node* insertAtposition(struct node *head, int newValue,int position )
+{
+    struct node *newnode =(struct node*)malloc(sizeof(struct node));
+    newNode->data = newVAlue;
+    if(position == 1)
+    {
+        newNode->next = head;
+        return newNode;
+    }
+    else
+    {
+        struct node *ptr = head;
+        for(int i=1;i<=position-2;i++)
+            ptr=ptr->next;
+        newNode->next = ptr->next;
+        ptr->next = newNode;
+        return head;
+    }
+    
+}
+void displayRec(struct node *head)
+{
+    if(head != NULL)
+    {
+        printf(" %d",head-> data);
+        displayRec(head->next);
+    }
+}
+void displayReverse(struct node *head)
+{
+    if(head != NULL)
+    {
+        displayReverse(head->next);
+        printf("%d",head->data);
+        
+    }
+}
+struct node* deleteAtBeginning(struct node *head)
+{
+    return(head == NULL || head ->next==NULL)?NULL : head->next;
+}
+
+struct node* deleteAtEnding(struct node *head )
+{
+    if(head == NULL || head->next == NULL)
+        return NULL;
+    struct node *ptr = head ,*prev = NULL;
+    while(ptr->next != NULL)
+    {
+        prev = ptr;
+        ptr = ptr->next;
+    }
+    prev->next = NULL;
+    free(ptr);
+    return head;
+    
+}
+struct node* deleteAtposition(struct node *head,int position )
+{
+    if(position == 1)
+       return(head == NULL || head ->next==NULL)?NULL : head->next;
+    struct node *ptr = head,*temp = NULL;
+    for(int i=1;i<=position-2;i++)
+            ptr=ptr->next;
+    temp = ptr->next;
+    ptr->next = temp->next;//ptr->next->next;
+    temp->next=NULL;
+    free(temp);
+    return head;
+    
+}
+int main() {
+    for (int i=1;i<=5;i++)
+        head = insertAtBeginning(head,rand()%100);
+    for (int i=1;i<=5;i++)
+        head = insertAtEnding(head,rand()%10);
+    head = insertAtposition(head,48,3);
+    head=deleteAtPosition(head);
+
+    return 0;
+}
