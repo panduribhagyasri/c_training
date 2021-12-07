@@ -1,0 +1,13 @@
+struct node* deleteAtposition(struct node *head,int position )
+{
+    if(position == 1)
+       return(head == NULL || head ->next==NULL)?NULL : head->next;
+    struct node *ptr = head,*temp = NULL;
+    for(int i=1;i<=position-2;i++)
+            ptr=ptr->next;
+    temp = ptr->next;
+    ptr->next = temp->next;//ptr->next->next;
+    temp->next=NULL;
+    free(temp);
+    
+}
