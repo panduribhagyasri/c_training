@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include<stdbool.h>
+void add1(void);
+int main()
+{
+    add1();
+    return 0;
+}
+void add1(void)
+{
+    int x,y;
+    scanf("%d %d",&x,&y);
+    printf("sum from I:%d",x+y);
+    
+}
+----------------------------------------------------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include<stdbool.h>
+void add1(void);
+void add2(int,int);
+int add3(void);
+int add4(int,int);
+int main()
+{
+    add1();
+    add2(10,20);
+    int r3=add3();
+    printf("sum from III:%d\n",x+y);
+    int r4=add4(25,85);
+    printf("sum from IV:%d\n",r4)
+    return 0;
+}
+void add1(void)
+{
+    int x,y;
+    scanf("%d %d",&x,&y);
+    printf("sum from I:%d",x+y);
+    
+}
+
+void add2(int x,int y)
+{
+    printf("sum from II:%d\n",x+y);
+}
+int add3(void)
+{
+    
+}
+int(int x,int y)
+{
+    
+}

@@ -1,0 +1,9 @@
+void displayReverse(struct node *head)
+{
+    if(head != NULL)
+    {
+        displayReverse(head->next);
+        printf("%d",head->data);
+        
+    }
+}

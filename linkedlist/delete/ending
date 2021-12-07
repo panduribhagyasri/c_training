@@ -1,0 +1,15 @@
+struct node* deleteAtEnding(struct node *head )
+{
+    if(head == NULL || head->next == NULL)
+        return NULL;
+    struct node *ptr = head ,*prev = NULL;
+    while(ptr->next != NULL)
+    {
+        prev = ptr;
+        ptr = ptr->next;
+    }
+    prev->next = NULL;
+    free(ptr);
+    return head;
+    
+}

@@ -1,0 +1,45 @@
+//insert at second position
+struct node* insertAtEnding(struct node *head,int newValue) //Optimized logic
+{
+    struct node *newNode = (struct node*) malloc(sizeof(struct node));
+    newNode->data = newValue;
+    newNode->next = NULL;
+    
+    if(head == NULL)
+        head = newNode;//return newNode;
+    else
+    {
+        struct node *ptr = head;
+        while(ptr->next != NULL)
+            ptr = ptr->next;
+        ptr->next = newNode;
+    }
+    return head;
+}
+-------------------------------------------------------------------------------
+//at position
+struct node* insertAtPosition(struct node *head,int newValue, int position)
+{
+    /*if(position == 1)
+        return insertAtBeginning(head,newValue);*/    
+    
+    struct node *newNode = (struct node*) malloc(sizeof(struct node));
+    newNode->data = newValue;
+    
+    if(position == 1)
+    {
+        newNode->next = head;
+        return newNode;
+    }
+    else
+    {
+        struct node *ptr = head;
+        for(int i=1;i<=position-2;i++)
+            ptr = ptr->next;
+        newNode->next = ptr->next;
+        ptr->next = newNode;
+        return head;
+    }
+}
+
+

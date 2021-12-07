@@ -1,0 +1,32 @@
+void displayIter(struct node *head)
+{
+    if(head == NULL)
+        printf("List is empty");
+    else
+    {
+        struct node *ptr = head;
+        while(ptr != NULL)
+        {
+            printf("%d ",ptr->data);
+            ptr = ptr->next;
+        }
+    }
+}
+
+void displayRec(struct node *head)
+{
+    if(head != NULL)
+    {
+        printf("%d ",head->data);
+        displayRec(head->next);
+    }
+}
+
+void displayReverse(struct node *head)
+{
+    if(head != NULL)
+    {
+        displayReverse(head->next);
+        printf("%d ",head->data);
+    }
+}

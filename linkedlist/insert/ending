@@ -1,0 +1,44 @@
+// insert the data at the end of the linked list
+#include <stdio.h>
+#include <stdlib.h>
+#pragma pack(1)
+struct node
+{
+    int data;
+    struct node *next;
+
+}*head= NULL;
+struct node* insertAtBeginning(struct node *head, int newValue )
+{
+    struct node *newnode =(struct node*)malloc(sizeof(struct node));
+    newNode->data = newVAlue;
+    newNode->next = head;
+   
+    return newnode;
+}
+struct node* insertAtEnding(struct node *head, int newValue )
+{
+    struct node *newnode =(struct node*)malloc(sizeof(struct node));
+    newNode->data = newVAlue;
+    newNode->next = NULL;
+    if (head == NULL)
+        return newnode;//head = newNode;
+    else
+    {
+        struct node *ptr=head;
+        while(ptr-> next != NULL)
+            ptr=ptr->next;
+        ptr-> next = newNode;
+    }
+    return head;
+        
+}
+
+int main() {
+    for (int i=1;i<=5;i++)
+        head = insertAtBeginning(head,rand()%100);
+    for (int i=1;i<=5;i++)
+        head = insertAtEnding(head,rand()%10);
+
+    return 0;
+}
