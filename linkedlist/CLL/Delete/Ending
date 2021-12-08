@@ -1,0 +1,21 @@
+struct CLLNode* deleteAtEnding(struct CLLNode *tail)
+{
+    if(tail == NULL)    return tail; //return NULL
+    
+    if(tail->next == tail)
+    {
+        free(tail);
+        return NULL;
+    }
+    
+    struct CLLNode *ptr = tail->next;
+    while(ptr->next != tail)
+        ptr = ptr->next;
+    ptr->next = tail->next;
+    
+    struct CLLNode *temp = tail;
+    temp->next = NULL;
+    
+    tail = ptr;
+    free(temp);
+}
