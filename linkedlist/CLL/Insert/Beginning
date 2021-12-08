@@ -1,0 +1,17 @@
+struct CLLNode* insertAtBeginning(struct CLLNode *tail,int newValue)
+{
+    struct CLLNode *newNode = (struct CLLNode*) malloc(sizeof(struct CLLNode));
+    newNode->data = newValue;
+    
+    if(tail == NULL)
+    {
+        newNode->next = newNode;
+        tail = newNode;
+    }
+    else
+    {
+        newNode->next = tail->next;
+        tail->next = newNode;
+    }
+    return tail;
+}
