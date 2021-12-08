@@ -1,0 +1,24 @@
+struct node* mergeLists(struct node *headA,struct node *headB)
+{
+    struct node *dummy = (struct node*) malloc(sizeof(struct node));
+    dummy->next = NULL;
+    struct node *current = dummy;
+    
+    while(headA!=NULL && headB!= NULL)
+    {
+        if(headA->data <= headB->data)
+        {
+            current->next = headA;
+            current = current->next;
+            headA = headA->next;
+        }
+        else
+        {
+            current->next = headB;
+            current = current->next;
+            headB = headB->next;
+        }
+    }
+    current->next = headA!=NULL ? headA : headB!=NULL ? headB : NULL;
+    return dummy->next;
+}
