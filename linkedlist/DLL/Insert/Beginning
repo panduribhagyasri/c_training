@@ -1,0 +1,19 @@
+struct DLLNode* insertAtBeginning(struct DLLNode *head,int newValue)
+{
+    struct DLLNode *newNode = (struct DLLNode*) malloc(sizeof(struct DLLNode));
+    newNode->prev = NULL;
+    newNode->data = newValue;
+    
+    if(head == NULL)
+    {
+        newNode->next = NULL;
+        head = newNode;
+    }
+    else
+    {
+        newNode->next = head;
+        head->prev = newNode;
+        head = newNode;
+    }
+    return head;
+}
