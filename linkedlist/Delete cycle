@@ -1,0 +1,15 @@
+struct node* detectCycle(struct node *head)
+{
+    struct node *venu = head, *naveen = head;
+    while(1)
+    {
+        while(naveen!=NULL || naveen->next!=NULL)
+        {
+            venu = venu->next;
+            naveen = naveen->next->next;
+            if(venu == naveen)
+                return 1;
+        }
+        return 0;
+    }
+}
