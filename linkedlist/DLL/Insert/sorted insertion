@@ -1,0 +1,28 @@
+struct node* sortedInsertion(struct node *head,int newValue)
+{
+    struct node *newNode = (struct node*) malloc(sizeof(struct node));
+    newNode->left = NULL;
+    newNode->data = newValue;
+    newNode->right = NULL;
+    
+    if(head == NULL)
+        return newNode;
+    else if(head->data >= newNode->data)
+    {
+        newNode->right = head;
+        head->left = newNode;
+        return newNode;
+    }    
+    else
+    {
+        struct node *ptr = head;
+        while(ptr->right != NULL && ptr->right->data < newNode->data)
+            ptr = ptr->right;
+        newNode->right = ptr->right;
+        if(ptr->right != NULL)
+            ptr->right->left = newNode;
+        newNode->left = ptr;
+        ptr->right = newNode;
+        return head;
+    }
+}
