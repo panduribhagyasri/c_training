@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+int makePartition(int arr[],int left,int right)
+{
+    int pivotNumber = arr[right];
+    int i=left-1,j;
+    for(j=left;j<right;j++)
+    {
+        if(arr[j] <= pivotNumber)
+        {
+            i++;
+            swap(&arr[i],&arr[j]);
+        }
+    }
+    swap(&arr[i+1],&arr[right]);
+    return i+1;
+}
+void quickSort(int arr[],int leftIndex,rightIndex)
+{
+    if(leftIndex <rightIndex){
+        int pivotIndex = makePartition(arr,leftINdex,rightIndex);
+        quicksort(arr,leftIndex,pivotIndex-1);
+        quicksort(arr,pivotIndex+1,rightIndex);
+        
+        
+
+    }
+}
+
+
+int main() {
+
+    int n;
+    scanf("%d",&n);
+    int arr[n],i;
+    for(i=0;i<n;i++)
+        scanf("%d",&arr[i]);
+    quickSort(arr,0,n-1);
+    for(i=0)
+    return 0;
+}
