@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+struct stackNode
+{
+    int data;
+    struct stackNode *next;
+}*top = NULL;
+
+struct stackNode* push(struct stackNode *top,int newValue)
+{
+    struct stackNode *newNode = (struct stackNode*) malloc(sizeof(struct stackNode));
+    newNode->data = newValue;
+    newNode->next = top;
+    return newNode;
+}
+
+struct stackNode* pop(struct stackNode *top)
+{
+    return (top==NULL || 
+int main() 
+{
+    top ? printf("\nTop element: %d\n",top->data) : printf("\nStack is empty\n");
+    for(int i=1;i<=6;i++)
+        top = push(top,i*2);
+    
+    top = push(top,15);
+    
+    display(top);
+    
+    top ? printf("\nTop element: %d",top->data) : printf("\nStack is empty");
+    
+    top = pop(top);
+    
+    display(top);
+    
+    isEmpty(top) ? printf("\nList is empty") : printf("\nStack is not Empty");
+    
+    top ? printf("\nTop element: %d\n",top->data) : printf("\nStack is empty\n");
+    
+    return 0;
+}
