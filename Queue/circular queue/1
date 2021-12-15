@@ -17,6 +17,28 @@ void enCQ(int value)
         rear = newNode;
     }
     rear->next = front;
+}
+
+void deCQ()
+{
+    if(front == NULL)
+    {
+        printf("\nNo elements to delete\n");
+        return;
+    }
+    if(front == rear)
+    {
+        free(front);
+        front = rear = NULL;
+    }
+    else
+    {
+        struct CQNode *temp = front;  
+        front = front->next;
+        rear->next = front;
+        free(temp);
+    }
+}
 void display()
 {
     if(front == NULL)
