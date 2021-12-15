@@ -1,0 +1,47 @@
+#define MAX 5
+
+int cQueue[MAX], front = -1, rear = -1;
+
+void enQueue(int n)
+{
+    if((front==0 && rear==MAX-1) || (front == rear+1))
+    {
+        printf("\nCirculer Queue is Full, Not possible to place data\n");
+        return;
+    }
+    if(front == -1)
+        front = 0;
+    rear = (rear+1)%MAX;
+    cQueue[rear] = n; 
+}
+
+void deQueue()
+{
+    if(front == -1)
+    {
+        printf("\nCirculer Queue is empty. Try again after inserting data\n");
+        return;
+    }
+    if(front != rear)
+        front = (front+1)%MAX;
+    else
+        front = rear = -1;
+int main()
+{
+    enQueue(47);
+    printf("Front: %d\tRear: %d\n",front,rear);
+    enQueue(14);
+    enQueue(17);
+    enQueue(7);
+    printf("Front: %d\tRear: %d\n",front,rear);
+    enQueue(4);
+    printf("Front: %d\tRear: %d\n",front,rear);
+    deQueue();
+    printf("Front: %d\tRear: %d\n",front,rear);
+    enQueue(1);
+    printf("Front: %d\tRear: %d\n",front,rear);
+    enQueue(1);
+    printf("Front: %d\tRear: %d\n",front,rear);
+    display();
+    return 0;
+}
