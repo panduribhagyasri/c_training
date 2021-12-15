@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define MAX 5
+
+int queue[MAX], front = 0, rear = -1;
+
+void enQueue(int n)
+{
+    if(rear == MAX)
+    {
+        printf("\nQueue is overflow\n");
+        return;
+    }
+    queue[++rear] = n;    
+}
+
+void qeQueue()
+{
+    if(front > rear)
+    {
+        printf("\nQueue is underflow. No elements to delete\n");
+        return;
+    }
+    
+    printf("\nElement to be deleted is: %d\n",queue[front++]);
+    if(front > rear)
+    {
+        front = 0;
+        rear = -1;
+    }
+}
+int main() 
+{
+    display();
+    
+    enQueue(15);
+    enQueue(5);
+    enQueue(25);
+    enQueue(12);
+    
+    display();
+    
+    qeQueue();
+    
+    display();
+    
+    enQueue(65);
+    enQueue(132);
+    
+    display();
+    return 0;
+}
