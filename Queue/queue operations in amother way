@@ -1,0 +1,55 @@
+struct QueueNode
+void deQueue(struct Queue *x)
+{
+    if(x->front == NULL)
+        return;
+    
+    struct QueueNode *ptr = x->front;
+    
+    x->front = x->front->next;
+    if(x->front == NULL)
+        x->rear = NULL;
+    
+    free(ptr);
+}
+
+void enQueue(struct Queue *x,int n)
+{
+    struct QueueNode *newNode = (struct QueueNode*) malloc(sizeof(struct QueueNode));
+    newNode->data = n;
+    newNode->next = NULL;
+    
+    if(x->rear == NULL)
+    {
+        x->rear = x->front = newNode;
+        return;
+    }
+    
+    x->rear->next = newNode;
+    x->rear = newNode;
+}
+
+void display(struct Queue *x)
+{
+    struct QueueNode *ptr = x->front;
+    while(ptr != x->rear)
+    {
+        printf("%d -> ",ptr->data);
+        ptr = ptr->next;
+    }
+    printf("%d\n",ptr->data);
+}
+
+int main() 
+{
+    struct Queue *x = createQueue(); 
+    enQueue(x,100);
+    enQueue(x,147);
+    enQueue(x,258);
+    display(x);
+    deQueue(x);
+    display(x);
+    deQueue(x);
+    display(x);
+    return 0;
+}
