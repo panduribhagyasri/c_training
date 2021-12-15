@@ -1,0 +1,49 @@
+struct CQNode
+{
+    int data;
+    struct CQNode *next;
+}*front = NULL, *rear = NULL;
+
+void enCQ(int value)
+{
+    struct CQNode *newNode = (struct CQNode*) malloc(sizeof(struct CQNode));
+    newNode->data = value;
+    
+    if(front == NULL)
+        front = rear = newNode;
+    else
+    {
+        rear->next = newNode;
+        rear = newNode;
+    }
+    rear->next = front;
+void display()
+{
+    if(front == NULL)
+    {
+        printf("\nEmpty Circuler Queue\n");
+        return;
+    }
+    struct CQNode  *ptr = front;
+    while(ptr != rear)
+    {
+        printf("%d -> ",ptr->data);
+        ptr = ptr->next;
+    }
+    printf("%d\n",ptr->data);
+}
+
+int main()
+{
+    deCQ();
+    display();
+    enCQ(1);
+    enCQ(4);
+    enCQ(7);
+    enCQ(8);
+    enCQ(5);
+    display();
+    deCQ();
+    display();
+    return 0;
+}
