@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+struct BTNode
+{
+    struct BTNode *left;
+    int data;
+    struct BTNode *right; 
+}*root = NULL,*front = NULL,*rear = NULL;
+struct BTNode* prepareNewNode(char ch)
+{
+    struct BTNode *newNode = (struct BTNode*) malloc (sizeof(struct BTNode));
+    newNode->left = newNode->right = NULL;
+    newNode->data =ch;
+    return newNode;
+}
+void enQueue(struct BTNode *node)
+{
+    struct BTNode *temp = (struct )
+    if(front == NULL && rear == NULL)
+        front =rear = node;
+    else{
+        rear-> next = node;
+        rear = node;
+        }
+}
+struct BTNode* deQueue()
+{
+    struct BTNode *ptr = front;
+    if(front ==NULL)
+        return NULL;
+    else if (front ==rear)
+        front =rear = NULL;
+    else
+        front = front->right;
+    return ptr;
+}
+void printLevelOrder(struct BTNode *root)
+{
+    struct BTNode *ptr = root;
+    while(ptr != NULL)
+    {
+        printf("%c ",ptr->data);
+        if(ptr->left != NULL) enQueue(ptr->left);
+        if(ptr->right != NULL) enQueue(ptr->right);
+        ptr = deQueue();
+    }
+}
+
+int main() {
+    root = prepareNewNode('A');
+    root->left = prepareNewNode('B');
+    root ->right= prepareNewNode('C');
+    
+    root->left->left = prepareNewNode('D');
+    root->left->right = prepareNewNode('E');
+    root->right->left = prepareNewNode('F');
+    
+    
+    root ->right->right= prepareNewNode('G');
+    
+    
+ 
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    return 0;
+}
