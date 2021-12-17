@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+struct BTNode
+{
+    struct BTNode *left;
+    char data;
+    struct BTNode *right;
+}*root1 = NULL, *root2 = NULL;
+
+struct BTNode* prepareNewNode(char ch)
+{
+    struct BTNode *newNode = (struct BTNode*) malloc(sizeof(struct BTNode)); 
+    newNode->left = newNode->right = NULL;
+    newNode->data = ch;
+    return newNode;
+}
+
+void preOrder(struct BTNode *root)
+{
+    if(root != NULL)
+    {
+        printf("%c ",root->data);
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+}
+
+bool isTreesIdentical(struct BTNode *root1,struct BTNode *root2)
+{
+    if(root1==NULL && root2==NULL)      return true;
+    if(root1==NULL || root2==NULL)      return false;
+    return root1->data==root2->data && isTreesIdentical(root1->left,root2->left) && isTreesIdentical(root1->right,root2->right);
+}
+
+int main() 
+{
+    root1 = prepareNewNode('A');
+    root1->left = prepareNewNode('B');
+    root1->right = prepareNewNode('C');
+    root1->left->left = prepareNewNode('D');
+    root1->left->right = prepareNewNode('E');
+    root1->right->left = prepareNewNode('F');
+    root1->right->right = prepareNewNode('G');
+    
+    root2 = prepareNewNode('A');
+    root2->left = prepareNewNode('B');
+    root2->right = prepareNewNode('C');
+    root2->left->left = prepareNewNode('D');
+    root2->left->right = prepareNewNode('E');
+    root2->right->left = prepareNewNode('F');
+    root2->right->right = prepareNewNode('G');
+    root2->right->right->left = prepareNewNode('H');
+    
+    preOrder(root1);
+    printf("\n\n");
+    preOrder(root2);
+    
+    isTreesIdentical(root1,root2) ? printf("\nIdentical") : printf("\nNot Identical");
+    return 0;
+}
