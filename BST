@@ -1,0 +1,173 @@
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+struct BSTNode
+{
+    struct BSTNode *left;
+    int data;
+    struct BSTNode *right;
+}*root = NULL;
+
+struct BSTNode* prepareNewNode(int value)
+{
+    struct BSTNode *newNode = (struct BSTNode*) malloc(sizeof(struct BSTNode));
+    newNode->left = newNode->right = NULL;
+    newNode->data = value;
+    return newNode;
+}
+struct BSTNode* BSTInsertionIter(struct BSTNode *root,int value)
+{
+    struct BSTNode *newNode = prepareNewNode(value);
+    
+    if(root == NULL)
+        return newNode;
+    
+    struct BSTNode *ptr = root;
+    while(ptr != NULL)
+    {
+        if(value <= ptr->data)
+        {
+            if(ptr->left == NULL)
+            {
+                ptr->left = newNode;
+                break;
+            }
+            else
+                ptr = ptr->left;
+        }
+        else
+        {
+            if(ptr->right == NULL)
+            {
+                ptr->right = newNode;
+                break;
+            }
+            else
+                ptr = ptr->right;
+        }
+    }
+    return root;
+}
+struct BSTNode* BSTInsertionRec(struct BSTNode *root,int value)
+{
+    if(root == NULL)         return prepareNewNode(value);
+    if(value <= root->data)
+        root->left = BSTInsertionRec(root->left,value);
+    else
+        root->right = BSTInsertionRec(root->right,value);
+    return root;
+}
+
+void inOrder(struct BSTNode *root)
+{
+    if(root != NULL)
+    {
+        inOrder(root->left);
+        printf("%d ",root->data);
+        inOrder(root->right);
+    }
+}
+int getMin(struct BSTNode *root)
+{
+    struct BSTNode *ptr = root;
+    while(ptr->left!=NULL)
+        ptr = ptr->left;
+    return ptr->data;
+}
+
+struct BSTNode* getMinR(struct BSTNode *root)
+{
+    return root==NULL ? NULL : root->left==NULL ? root : getMinR(root->left);
+}
+
+int getMax(struct BSTNode *root)
+{
+    struct BSTNode *ptr = root;
+    while(ptr->right != NULL)
+        ptr = ptr->right;
+    return ptr->data;
+}
+
+struct BSTNode* getMaxR(struct BSTNode *root)
+{
+    return root==NULL ? NULL : root->right==NULL ? root : getMaxR(root->right);
+}
+bool isAvailable(struct BSTNode *root,int key)
+{
+    struct BSTNode *ptr = root;
+    
+    while(ptr != NULL)
+    {
+        if(key == ptr->data)
+            return true;
+        ptr = key < ptr->data ? ptr->left : ptr->right;
+    }
+    return false;
+}
+
+struct BSTNode* BSTDeletion(struct BSTNode *root,int key)
+{
+    if(root == NULL)
+        return NULL;
+    
+    if(key < root->data)
+        root->left = BSTDeletion(root->left,key);
+    else if(key > root->data)
+        root->right = BSTDeletion(root->right,key);
+    else
+    {
+        struct BSTNode *ptr;
+        if(root->left && root->right)
+        {
+            ptr = root->left;
+            while(ptr->right)
+                ptr = ptr->right;
+            root->data = ptr->data;
+            root->left = BSTDeletion(root->left,ptr->data);
+        }
+        else
+        {
+            ptr = root;
+            if(root->left == NULL)
+                root = root->right;
+            else if(root->right == NULL)
+                root = root->left;
+            free(ptr);
+        }
+        return root;
+    }
+    return root;
+}
+int main() 
+{
+    int n;
+    scanf("%d",&n);
+    
+    for(int i=1;i<=n;i++)
+    {
+        int newValue;
+        scanf("%d",&newValue);
+        root = BSTInsertionRec(root,newValue);
+    }
+    
+    printf("The BST elements are: ");
+    inOrder(root);
+    printf("\nMinimum value in the BST is: %d",getMin(root));
+    printf("\nMaximum value in the BST is: %d",getMax(root));
+    
+    struct BSTNode *ptr = getMinR(root);
+    ptr==NULL ? printf("\nElements are not existed") : printf("\nMIn value is: %d",ptr->data);
+    ptr = getMaxR(root);
+    ptr==NULL ? printf("\nElements are not existed") : printf("\nMax value is: %d",ptr->data);
+    
+    isAvailable(root,470) ? printf("\nYes.. Available") : printf("\nNo.. Not available");
+    
+    root = BSTDeletion(root,2);
+    printf("The BST elements are: ");
+    inOrder(root);
+    return 0;
+}
